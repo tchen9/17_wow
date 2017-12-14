@@ -4,8 +4,8 @@ var boxWidth = box.offsetWidth;
 
 //hardcode target as center
 //randomize later
-var targetX = boxWidth / 2;
-var targetY = boxHeight / 2;
+var targetX = Math.random()*boxWidth;
+var targetY = Math.random()*boxHeight;
 
 console.log( "box height: " + boxHeight );
 console.log( "box width: " + boxWidth );
@@ -21,14 +21,15 @@ var findIt = function(event) {
     var x = event.clientX;     // Get the horizontal coordinate
     var y = event.clientY;     // Get the vertical coordinate
     var dist = distance(x,y,targetX,targetY);
-    console.log(dist);
+    //console.log(dist);
     if(dist > 0 && dist < 10.0){
-	console.log("MIDDDLE");
-	return "Congratulations!";
+	this.style.backgroundImage = "url('https://cdn.modernfarmer.com/wp-content/uploads/2014/09/cowhero2.jpg')";
+	this.style.backgroundSize = "cover";
+	return;
     }
-    var c = 255 - (distance(x, y, targetX, targetY)/4);
-    console.log(c);
-    this.style.background = 'rgb(c, c, c)';
+    var c = Math.floor(100 - (distance(x, y, targetX, targetY)/8));
+    //console.log(c);
+    this.style.background = 'hsl(215, 100%, ' + c +'%)';
 };
 
 /*
